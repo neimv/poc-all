@@ -1,8 +1,10 @@
 name: "create Dockers"
 
 on:
-  schedule:
-    - cron: "*/5 * * * *" # every 10 minutes
+  # schedule:
+  #   - cron: "*/5 * * * *" # every 10 minutes
+
+  workflow_dispatch:
 
 defaults:
   run:
