@@ -36,6 +36,12 @@ func GetUsersId(c echo.Context) error {
 	users := initDataFake()
 
 	id, _ := strconv.Atoi(c.Param("id"))
+	totalUser := len(users)
+
+	if id >= totalUser {
+		emptyUser := models.User{}
+		return c.JSON(http.StatusNotFound, emptyUser)
+	}
 
 	return c.JSON(http.StatusOK, users[id])
 }
