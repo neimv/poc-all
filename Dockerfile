@@ -16,7 +16,7 @@ WORKDIR /root/
 COPY --from=builder /go/src/github.com/neimv/poc-all/app ./
 # COPY --from=builder /go/src/github.com/neimv/poc-all/.env ./
 
-RUN export $(grep -v '^#' .env | xargs -d '\n')
+# RUN export $(grep -v '^#' .env | xargs -d '\n')
 
 EXPOSE 8000
 
