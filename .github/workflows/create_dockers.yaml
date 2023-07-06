@@ -12,17 +12,20 @@ defaults:
 
 jobs:
   running:
+    strategy:
+      matrix:
+        branch: [develop, staging, master]
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ matrix.branch }}
 
       - name: Get environment
         id: environment
         env:
-          BRANCH: ${{ github.ref_name }}
+          BRANCH: ${{ matrix.branch }}
         run: |
           timestamp=$(date +%s)
           if [ "$BRANCH" = "develop" ]; then
