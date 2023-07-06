@@ -41,7 +41,7 @@ jobs:
             exit 1
           fi
 
-          tag="$BRANCH"_"$timestamp"
+          tag="$env"_"$timestamp"
           echo "docker_tag=tag" >> $GITHUB_OUTPUT
           echo "$tag"
 
