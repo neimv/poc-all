@@ -1,0 +1,42 @@
+name: "create Dockers"
+
+on:
+  schedule:
+    - cron: "*/10 * * * *" # every 10 minutes
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  running:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Get environment
+        id: environment
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          if [ "$BRANCH" = "develop" ]; then
+            echo "develop"
+            echo "environment=development" >> $GITHUB_OUTPUT
+          elif [ "$BRANCH" = "staging" ]; then
+            echo "staging"
+            echo "environment=staging" >> $GITHUB_OUTPUT
+          elif [ "$BRANCH" = "master" ]; then
+            echo "production"
+            echo "environment=production" >> $GITHUB_OUTPUT
+          else
+            echo "error O.O"
+            exit 1
+          fi
+
+      - name: show envs
+        run: |
+          echo '${{ steps.environment.outputs.environment }}'
+          echo "Hello"
