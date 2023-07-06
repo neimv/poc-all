@@ -14,4 +14,4 @@ COPY --from=builder /go/src/github.com/alexellis/href-counter/app ./
 
 EXPOSE 8000
 
-CMD ["./app"]
+CMD [ "./app" ]
