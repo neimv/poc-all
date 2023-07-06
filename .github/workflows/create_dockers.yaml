@@ -26,22 +26,22 @@ jobs:
           if [ "$BRANCH" = "develop" ]; then
             echo "develop"
             env=develop
-            echo "environment=env" >> $GITHUB_OUTPUT
+            echo "environment=$env" >> $GITHUB_OUTPUT
           elif [ "$BRANCH" = "staging" ]; then
             echo "staging"
             env=staging
-            echo "environment=env" >> $GITHUB_OUTPUT
+            echo "environment=$env" >> $GITHUB_OUTPUT
           elif [ "$BRANCH" = "master" ]; then
             echo "production"
             env=production
-            echo "environment=env" >> $GITHUB_OUTPUT
+            echo "environment=$env" >> $GITHUB_OUTPUT
           else
             echo "error O.O"
             exit 1
           fi
 
           tag="$env"_"$timestamp"
-          echo "docker_tag=tag" >> $GITHUB_OUTPUT
+          echo "docker_tag=$tag" >> $GITHUB_OUTPUT
           echo "$tag"
 
       - name: show envs
