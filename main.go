@@ -35,7 +35,7 @@ func main() {
 	e.GET("/v2", func(c echo.Context) error {
 		return c.String(http.StatusOK, "esto llego hasta staging")
 	})
-	e.GET("/v2", func(c echo.Context) error {
+	e.GET("/v3", func(c echo.Context) error {
 		return c.String(http.StatusOK, "esto se quedo en develop")
 	})
 	e.GET("/users", views.GetUsers)
