@@ -2,7 +2,7 @@ name: "create Dockers"
 
 on:
   schedule:
-    - cron: "0,10,20,30,40,50 * * * *" # every 10 minutes
+    - cron: "0,5,10,15,20,25,30,35,40,45,50,55 * * * *" # every 10 minutes
 
 defaults:
   run:
@@ -26,13 +26,16 @@ jobs:
           timestamp=$(date +%s)
           if [ "$BRANCH" = "develop" ]; then
             echo "develop"
-            echo "environment=development" >> $GITHUB_OUTPUT
+            env=develop
+            echo "environment=env" >> $GITHUB_OUTPUT
           elif [ "$BRANCH" = "staging" ]; then
             echo "staging"
-            echo "environment=staging" >> $GITHUB_OUTPUT
+            env=staging
+            echo "environment=env" >> $GITHUB_OUTPUT
           elif [ "$BRANCH" = "master" ]; then
             echo "production"
-            echo "environment=production" >> $GITHUB_OUTPUT
+            env=production
+            echo "environment=env" >> $GITHUB_OUTPUT
           else
             echo "error O.O"
             exit 1
