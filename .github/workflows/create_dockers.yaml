@@ -17,11 +17,13 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
+
       - name: Get environment
         id: environment
         env:
           BRANCH: ${{ github.ref_name }}
         run: |
+          timestamp=$(date +%s)
           if [ "$BRANCH" = "develop" ]; then
             echo "develop"
             echo "environment=development" >> $GITHUB_OUTPUT
@@ -35,6 +37,10 @@ jobs:
             echo "error O.O"
             exit 1
           fi
+
+          tag="$BRANCH"_"$timestamp"
+          echo "docker_tag=tag" >> $GITHUB_OUTPUT
+          echo "$tag"
 
       - name: show envs
         run: |
