@@ -52,7 +52,7 @@ jobs:
       - name: show envs
         run: |
           echo '${{ steps.environment.outputs.environment }}'
-          echo "Hello"
+          cat Dockerfile
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
