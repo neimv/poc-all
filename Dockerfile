@@ -1,4 +1,5 @@
 FROM golang:1.19 AS builder
+LABEL environment="staging"
 
 WORKDIR /go/src/github.com/neimv/poc-all/
 COPY . .
