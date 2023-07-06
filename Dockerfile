@@ -13,7 +13,7 @@ ENV environment=$env
 RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=builder /go/src/github.com/neimv/poc-all/app ./
-COPY --from=builder /go/src/github.com/neimv/poc-all/.env ./
+# COPY --from=builder /go/src/github.com/neimv/poc-all/.env ./
 
 RUN export $(grep -v '^#' .env | xargs -d '\n')
 
